@@ -1,0 +1,37 @@
+<% include ./partials/header %>
+
+
+<div class="ui raised segment">
+    <div class="ui items">
+        <div class="item">
+            <div class="ui medium image">
+                <img src="<%=ad.image%>">
+            </div>
+            <div class="content middle aligned">
+                <div class="meta">
+                    <span> <%= ad.date.toDateString() %> </span>
+                </div>
+                <div class="header"><%= ad.title %></div>
+                <div class="meta">
+                    <span> <%= ad.price %> </span>
+                </div>
+                <div class="description"><%=ad.description%></div>
+                <div class="meta">
+                    <span>Contact: <%= user.email %> </span>
+                </div>
+                <div class="button-collection">
+                    <form action="/craigslist/<%=ad._id%>?_method=DELETE" method="POST">
+                        <button class="ui red right floated button">Delete</button>
+                    </form>
+                    <a href="/craigslist/<%=ad._id%>/edit"><button class="ui grey right floated button">Edit</button></a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    
+</div>
+
+<% include ./partials/footer %>
+

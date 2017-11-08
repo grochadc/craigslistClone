@@ -1,0 +1,18 @@
+<% include ./partials/header %>
+
+<form action="/craigslist/new" method="POST" class="ui form">
+    <div class="field">
+        <input type="text" name="ad[title]" placeholder="Title">
+    </div>
+    <div class="field"><input type="text" name="ad[image]" placeholder="Image URL"></div>
+    <div class="field"><input type="text" name="ad[contact]" placeholder="E-mail"></div>
+    <div class="field"><input type="text" name="ad[price]" placeholder="Price"></div>
+    <div class="field"><textarea name="ad[description]" placeholder="Description"></textarea></div>
+    <!--<input type="submit">-->
+    <div class="button-collection">
+        <button type="submit" class="ui red basic button">Publish Listing</button>
+    </div>
+</form>
+<a href="/craigslist"><button class="ui blue basic button" id="listings-btn">Back to Listings</button></a>
+<!--<a href="/" id="listings-btn"><button>Back to Listings</button></a>-->
+<% include ./partials/footer %>

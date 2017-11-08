@@ -1,0 +1,18 @@
+{
+  "name": "craigslist",
+  "version": "1.0.0",
+  "description": "My own version of craigslist, made to practice RESTful routing.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mitalee Desai",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "method-override": "^2.3.10",
+    "mongoose": "^4.12.4"
+  }
+}

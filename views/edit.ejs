@@ -1,0 +1,19 @@
+<% include ./partials/header %>
+
+<form action="/craigslist/<%=ad._id%>?_method=PUT" method="POST" class="ui form">
+    <div class="field">
+        <input type="text" name="ad[title]" placeholder="Title" value="<%=ad.title%>">
+    </div>
+    <div class="field"><input type="text" name="ad[image]" placeholder="Image URL" value="<%=ad.image%>"></div>
+    
+    <div class="field"><input type="text" name="ad[contact]" placeholder="E-mail" value="<%=ad.contact%>"></div>
+    <div class="field"><input type="text" name="ad[price]" placeholder="Price" value="<%=ad.price%>"></div>
+    <div class="field"><textarea name="ad[description]" placeholder="Description"><%=ad.description%></textarea>
+    <div class="button-collection">
+        <button type="submit" class="ui red basic button">Update Listing</button>
+        <a href="/craigslist/<%=ad._id%>"><button class="ui blue basic button">Back to Listing</button></a>
+    </div>
+</form>
+
+<% include ./partials/footer %>
+

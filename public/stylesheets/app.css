@@ -1,0 +1,16 @@
+.ui.container {
+    width: 70%;
+}
+
+.button-collection{
+    margin-top: 20px;
+}
+
+#listings-btn{
+    margin-top: 1em;
+    /*display: inline-block;*/
+}
+
+.ui.header:first-child {
+    margin-top: 0;
+}
