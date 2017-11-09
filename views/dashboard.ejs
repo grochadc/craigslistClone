@@ -1,0 +1,10 @@
+<% include ./partials/header %>
+
+<h1><%= user.username %> Dashboard</h1>
+<a href="/craigslist/new">Add a Listing</a>
+
+<h2>Your Posts</h2>
+<% user.ads.forEach(function(ad){ %>
+    <li><%=ad%></li>
+<% }) %>
+<% include ./partials/footer %>

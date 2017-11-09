@@ -8,11 +8,11 @@ mongoose.connect("mongodb://localhost/craigslist");
 var data = [
     {
         email: "bob@gmail.com",
-        password: "password",
+        // password: "password",
     },
     {
         email: "joe@gmail.com",
-        password: "password"
+        // password: "password"
     }
 ];
 
