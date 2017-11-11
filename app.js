@@ -10,6 +10,7 @@ var express = require("express"),
     // seedDB = require("./seeds");
 
 var app = express();
+var ObjectId = require('mongodb').ObjectID;
 app.set('view engine','ejs');
 
 app.use(require("express-session")({
@@ -53,27 +54,16 @@ app.get("/",function(req,res){
 });
 
 // DASHBOARD ROUTE
-app.get("/:id/dashboard",function(req,res){
-    User.findById(req.params.id,function(err,foundUser){
+app.get("/:user_id/dashboard",function(req,res){
+    User.findById(req.params.user_id).populate("ads").exec(function(err,foundUser){
         if(err){
             console.log(err);
         }else{
-            // var ad_ids = foundUser.ads;
-            // var ad_contents
-            // ad_ids.forEach(function(ad_id){
-            //     Ad.findById(ad_id,function(err,data){
-            //         if(err){
-            //             console.log(err);
-            //         }else{
-            //             ad_contents.push(data.title);
-            //         }
-            //     })
-            // })
-            // console.log(ad_contents);
             res.render("dashboard",{user: foundUser});
         }
     })
 })
+
 // REGISTER ROUTES
 app.get("/register",function(req,res){
     res.render("register");
@@ -150,13 +140,15 @@ app.get("/craigslist/:id",function(req,res){
                     console.log(err);
                 }else{
                     res.render("show",{ad: foundPost, user: user});
+                    // console.log(currentUser);
+                    // console.log(user);
                 }
             });
         }
     });
 });
 
-app.get("/craigslist/:id/edit",function(req,res){
+app.get("/craigslist/:id/edit",checkAdOwnership,function(req,res){
     Ad.findById(req.params.id,function(err,foundAd){
         if(err){
             console.log(err);
@@ -167,7 +159,7 @@ app.get("/craigslist/:id/edit",function(req,res){
     });
 });
 
-app.put("/craigslist/:id",function(req,res){
+app.put("/craigslist/:id",checkAdOwnership,function(req,res){
     Ad.findByIdAndUpdate(req.params.id,req.body.ad,function(err,foundAd){
         if (err){
             console.log(err);
@@ -177,22 +169,61 @@ app.put("/craigslist/:id",function(req,res){
     });
 });
 
-app.delete("/craigslist/:id",function(req,res){
+app.delete("/craigslist/:id",checkAdOwnership,function(req,res){
     Ad.findByIdAndRemove(req.params.id,function(err,foundAd){
         if(err){
             console.log(err);
         }else{
+            User.findById(req.user._id,function(err,foundUser){
+                if(err){
+                    console.log(err);
+                }else{
+                    foundUser.ads.pull(req.params.id);
+                    foundUser.save(function(err,data){
+                        if(err){
+                            console.log(err);
+                        }else{
+                            res.redirect("/"+req.user._id+"/dashboard");
+                        }
+                    })
+                }
+            });
             res.redirect("/craigslist");
         }
     })
 })
 
+// collection.update(
+//   { _id: id },
+//   { $pull: { 'contact.phone': { number: '+1786543589455' } } }
+// );
+
+// MIDDLEWARE
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
     res.redirect("/login");
 }
+
+function checkAdOwnership(req, res, next){
+    if(req.isAuthenticated()){
+        Ad.findById(req.params.id,function(err,foundAd){
+            if(err){
+                res.redirect("back");
+            }else{
+                if(foundAd.contact.equals(req.user._id)){
+                    next();
+                }else{
+                    res.redirect("back");
+                }
+            }
+        })
+    }else{
+        res.redirect("back");
+    }
+}
+
 app.listen(process.env.PORT,process.env.IP,function(){
     console.log("craigslist server has started");
 })

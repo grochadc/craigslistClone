@@ -5,6 +5,6 @@
 
 <h2>Your Posts</h2>
 <% user.ads.forEach(function(ad){ %>
-    <li><%=ad%></li>
+    <li><a href="/craigslist/<%=ad._id%>"><%=ad.title%></a></li>
 <% }) %>
 <% include ./partials/footer %>

@@ -19,12 +19,14 @@
                 <div class="meta">
                     <span>Contact: <%= user.username %> </span>
                 </div>
-                <div class="button-collection">
-                    <form action="/craigslist/<%=ad._id%>?_method=DELETE" method="POST">
-                        <button class="ui red right floated button">Delete</button>
-                    </form>
-                    <a href="/craigslist/<%=ad._id%>/edit"><button class="ui grey right floated button">Edit</button></a>
-                </div>
+                <% if(currentUser && user._id.equals(currentUser._id)) { %>
+                    <div class="button-collection">
+                        <form action="/craigslist/<%=ad._id%>?_method=DELETE" method="POST">
+                            <button class="ui red right floated button">Delete</button>
+                        </form>
+                        <a href="/craigslist/<%=ad._id%>/edit"><button class="ui grey right floated button">Edit</button></a>
+                    </div>
+                <% } %>
                 
             </div>
         </div>
