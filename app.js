@@ -28,7 +28,7 @@ passport.deserializeUser(User.deserializeUser());
 
 
 // mongoose.connect("mongodb://localhost/craigslist");
-mongoose.connect("mongodb://mndesai:marit5050@ds113606.mlab.com:13606/craigslist_clone", {useMongoClient: true})
+mongoose.connect("mongodb://mndesai:marit5050@ds113606.mlab.com:13606/craigslist_clone", {useMongoClient: true});
 // mongoose.connect(process.env.DATABASEURL);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
@@ -229,7 +229,11 @@ function checkAdOwnership(req, res, next){
 app.listen(process.env.PORT,process.env.IP,function(){
     console.log("craigslist server has started");
 <<<<<<< HEAD
+<<<<<<< HEAD
 })
+=======
+})
+>>>>>>> 253e608... Use the useMongoClient option on mongoose.connect() to stop the deprecation-warning at server start. http://mongoosejs.com/docs/4.x/docs/connections.html#use-mongo-client
 =======
 })
 >>>>>>> 253e608... Use the useMongoClient option on mongoose.connect() to stop the deprecation-warning at server start. http://mongoosejs.com/docs/4.x/docs/connections.html#use-mongo-client
