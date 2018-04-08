@@ -213,13 +213,13 @@ function checkAdOwnership(req, res, next){
             if(err){
                 res.redirect("back");
             }else{
-                if(foundAd.contact.equals(req.user._id)){
+                if(foundAd.contact == req.user._id){
                     next();
                 }else{
                     res.redirect("back");
                 }
             }
-        })
+        });
     }else{
         res.redirect("back");
     }
@@ -227,4 +227,4 @@ function checkAdOwnership(req, res, next){
 
 app.listen(process.env.PORT,process.env.IP,function(){
     console.log("craigslist server has started");
-})
+});
