@@ -27,8 +27,12 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
+<<<<<<< HEAD
 // mongoose.connect("mongodb://localhost/craigslist");
 mongoose.connect("mongodb://mndesai:marit5050@ds113606.mlab.com:13606/craigslist_clone", {useMongoClient: true});
+=======
+  mongoose.connect("mongodb://localhost/craigslist");
+>>>>>>> 0ac9e0b... Changed routes to their own modules
 // mongoose.connect(process.env.DATABASEURL);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
@@ -41,21 +45,11 @@ app.use(function(req,res,next){
 });
 
 //======================ROUTES============================
-app.get("/craigslist",function(req,res){
-    Ad.find({},function(err,ads){
-        if(err){
-            console.log(err);
-        }else{
-            res.render("index",{ads: ads});
-        }
-    });
-});
-
-app.get("/",function(req,res){
-    res.redirect("/craigslist");
-});
+var homepage = require('./routes/homepage');
+app.use('/', homepage);
 
 // DASHBOARD ROUTE
+<<<<<<< HEAD
 app.get("/:user_id/dashboard",function(req,res){
     User.findById(req.params.user_id).populate("ads").exec(function(err,foundUser){
         if(err){
@@ -106,9 +100,21 @@ app.get("/logout", function(req,res){
     req.logout();
     res.redirect("/");
 })
+=======
+var dashboard = require('./routes/dashboard');
+app.use('/', dashboard);
 
+// REGISTER ROUTES
+var register = require('./routes/register');
+app.use('/', register);
+>>>>>>> 0ac9e0b... Changed routes to their own modules
+
+// LOGIN/LOGOUT ROUTES
+var login = require('./routes/login');
+app.use('/', login);
 
 // CRAIGSLIST LISTING ROUTES
+<<<<<<< HEAD
 app.get("/craigslist/new",isLoggedIn,function(req,res){
     res.render("new");
 });
@@ -194,12 +200,17 @@ app.delete("/craigslist/:id",checkAdOwnership,function(req,res){
         }
     })
 })
+=======
+var listing = require('./routes/listing');
+app.use('/', listing);
+>>>>>>> 0ac9e0b... Changed routes to their own modules
 
 // collection.update(
 //   { _id: id },
 //   { $pull: { 'contact.phone': { number: '+1786543589455' } } }
 // );
 
+<<<<<<< HEAD
 // MIDDLEWARE
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
@@ -226,6 +237,8 @@ function checkAdOwnership(req, res, next){
     }
 }
 
+=======
+>>>>>>> 0ac9e0b... Changed routes to their own modules
 app.listen(process.env.PORT,process.env.IP,function(){
     console.log("craigslist server has started");
 })
