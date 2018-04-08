@@ -17,7 +17,7 @@
                 </div>
                 <div class="description"><%=ad.description%></div>
                 <div class="meta">
-                    <span>Contact: <%= user.username %> </span>
+                    <span>Contact: <%= ad.phone %> </span>
                 </div>
                 <% if(currentUser && user._id.equals(currentUser._id)) { %>
                     <div class="button-collection">
@@ -27,13 +27,12 @@
                         <a href="/craigslist/<%=ad._id%>/edit"><button class="ui grey right floated button">Edit</button></a>
                     </div>
                 <% } %>
-                
+
             </div>
         </div>
     </div>
-    
-    
+
+
 </div>
 
 <% include ./partials/footer %>
-
