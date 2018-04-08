@@ -27,7 +27,12 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
+<<<<<<< HEAD
   mongoose.connect("mongodb://localhost/craigslist");
+=======
+// mongoose.connect("mongodb://localhost/craigslist");
+mongoose.connect("mongodb://mndesai:marit5050@ds113606.mlab.com:13606/craigslist_clone", {useMongoClient: true});
+>>>>>>> pull-requests
 // mongoose.connect(process.env.DATABASEURL);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
