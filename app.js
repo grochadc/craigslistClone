@@ -228,12 +228,6 @@ function checkAdOwnership(req, res, next){
 
 app.listen(process.env.PORT,process.env.IP,function(){
     console.log("craigslist server has started");
-<<<<<<< HEAD
-<<<<<<< HEAD
 })
-=======
 })
->>>>>>> 253e608... Use the useMongoClient option on mongoose.connect() to stop the deprecation-warning at server start. http://mongoosejs.com/docs/4.x/docs/connections.html#use-mongo-client
-=======
 })
->>>>>>> 253e608... Use the useMongoClient option on mongoose.connect() to stop the deprecation-warning at server start. http://mongoosejs.com/docs/4.x/docs/connections.html#use-mongo-client
