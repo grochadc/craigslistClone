@@ -7,9 +7,12 @@
                     <img src="<%=ads[i].image%>">
                 </div>
                 <div class="content">
-                    <a class="header" href="/craigslist/<%=ads[i]._id%>"><%=ads[i].title%>: <%=ads[i].price%></a>  
+                    <a class="header" href="/craigslist/<%=ads[i]._id%>"><%=ads[i].title%>: <%=ads[i].price%></a>
                     <div class="meta">
                         <span>Description</span>
+                    </div>
+                    <div>
+                      Level: <%=ads[i].level%>
                     </div>
                     <div class="description">
                         <%=ads[i].description%>

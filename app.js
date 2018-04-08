@@ -27,8 +27,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-// mongoose.connect("mongodb://localhost/craigslist");
-mongoose.connect("mongodb://mndesai:marit5050@ds113606.mlab.com:13606/craigslist_clone")
+mongoose.connect("mongodb://localhost/craigslist");
 // mongoose.connect(process.env.DATABASEURL);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
@@ -63,8 +62,8 @@ app.get("/:user_id/dashboard",function(req,res){
         }else{
             res.render("dashboard",{user: foundUser});
         }
-    })
-})
+    });
+});
 
 // REGISTER ROUTES
 app.get("/register",function(req,res){
@@ -98,14 +97,14 @@ app.post("/login", passport.authenticate("local",{
         }else{
             res.redirect("/"+foundUser._id+"/dashboard");
         }
-    })
-})
+    });
+});
 
 // LOGOUT ROUTE
 app.get("/logout", function(req,res){
     req.logout();
     res.redirect("/");
-})
+});
 
 
 // CRAIGSLIST LISTING ROUTES
@@ -126,7 +125,7 @@ app.post("/craigslist/new",isLoggedIn,function(req,res){
                     req.user.ads.push(data);
                     req.user.save();
                 }
-            })
+            });
             res.redirect("/craigslist");
         }
     });
@@ -166,7 +165,7 @@ app.put("/craigslist/:id",checkAdOwnership,function(req,res){
         if (err){
             console.log(err);
         }else{
-            res.redirect("/craigslist/"+foundAd._id)
+            res.redirect("/craigslist/"+foundAd._id);
         }
     });
 });
@@ -187,13 +186,13 @@ app.delete("/craigslist/:id",checkAdOwnership,function(req,res){
                         }else{
                             res.redirect("/"+req.user._id+"/dashboard");
                         }
-                    })
+                    });
                 }
             });
             res.redirect("/craigslist");
         }
-    })
-})
+    });
+});
 
 // collection.update(
 //   { _id: id },
