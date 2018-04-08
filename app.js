@@ -67,6 +67,4 @@ app.use('/', listing);
 
 app.listen(process.env.PORT,process.env.IP,function(){
     console.log("craigslist server has started");
-})
-})
-})
+});
