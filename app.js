@@ -31,8 +31,12 @@ passport.deserializeUser(User.deserializeUser());
   mongoose.connect("mongodb://localhost/craigslist");
 =======
 // mongoose.connect("mongodb://localhost/craigslist");
+<<<<<<< HEAD
 mongoose.connect("mongodb://mndesai:marit5050@ds113606.mlab.com:13606/craigslist_clone", {useMongoClient: true})
 >>>>>>> 5c1002a... Resolved conflict
+=======
+mongoose.connect("mongodb://mndesai:marit5050@ds113606.mlab.com:13606/craigslist_clone", {useMongoClient: true});
+>>>>>>> c579ded... resolve
 // mongoose.connect(process.env.DATABASEURL);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
