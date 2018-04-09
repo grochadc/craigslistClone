@@ -14,4 +14,11 @@ var express = require('express'),
         });
     });
 
+    router.get("/admin", function(req, res){
+      User.find({}, function(err, users){
+        if(err) console.log(err);
+        else res.render("admin-dashboard", {users: users});
+      });
+    });
+
     module.exports = router;
