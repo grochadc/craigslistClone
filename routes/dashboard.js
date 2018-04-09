@@ -14,7 +14,7 @@ var express = require('express'),
         });
     });
 
-    router.get("/admin", function(req, res){
+    router.get("/admin", middleware.isLoggedIn, function(req, res){
       User.find({}, function(err, users){
         if(err) console.log(err);
         else res.render("admin-dashboard", {users: users});
