@@ -8,8 +8,6 @@ module.exports = {
       res.redirect("/login");
   },
 
-<<<<<<< HEAD
-<<<<<<< HEAD
   requireAdmin: function () {
     return function(req, res, next) {
       if (!req.user.isAdmin) {
@@ -19,10 +17,6 @@ module.exports = {
     };
   },
 
-=======
->>>>>>> 7e49a08... Modularize custom middleware (isLoggedIn and checkAdOwnerShip)
-=======
->>>>>>> 170db9c... Modularize custom middleware (isLoggedIn and checkAdOwnerShip)
   checkAdOwnerShip: function (req, res, next){
       if(req.isAuthenticated()){
           Ad.findById(req.params.id,function(err,foundAd){
