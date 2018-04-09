@@ -3,7 +3,18 @@
 <h1>Administrator's Dashboard</h1>
 
 <h2>Users</h2>
+<table>
+  <tr>
+    <td><b>Username</b></td>
+    <td><b>ID</b></td>
+  </tr>
+
 <% users.forEach(function(user){ %>
-    <li><%= user.username %></li>
+  <tr>
+    <td><%= user.username %></td>
+    <td><%= user.id %></td>
+  </tr>
 <% }) %>
+
+</table>
 <% include ./partials/footer %>
