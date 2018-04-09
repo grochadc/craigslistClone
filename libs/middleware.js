@@ -8,6 +8,15 @@ module.exports = {
       res.redirect("/login");
   },
 
+  requireAdmin: function () {
+    return function(req, res, next) {
+      if (!req.user.isAdmin) {
+        res.status(403).render("403forbidden");
+      }
+      else next();
+    };
+  },
+
   checkAdOwnerShip: function (req, res, next){
       if(req.isAuthenticated()){
           Ad.findById(req.params.id,function(err,foundAd){

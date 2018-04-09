@@ -5,10 +5,12 @@ var adSchema = new mongoose.Schema({
     price: String,
     image: String,
     description: String,
+    level: String,
     contact: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
+    phone: String,
     date: {type: Date, default: Date.now}
 });
 

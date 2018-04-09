@@ -1,0 +1,9 @@
+<% include ./partials/header %>
+
+<h1>Administrator's Dashboard</h1>
+
+<h2>Users</h2>
+<% users.forEach(function(user){ %>
+    <li><%= user.username %></li>
+<% }) %>
+<% include ./partials/footer %>
