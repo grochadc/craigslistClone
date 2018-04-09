@@ -3,6 +3,7 @@
 <h1>Administrator's Dashboard</h1>
 
 <h2>Users</h2>
+<<<<<<< HEAD
 <table>
   <tr>
     <td><b>Username</b></td>
@@ -27,4 +28,9 @@
 <% }) %>
 
 </table>
+=======
+<% users.forEach(function(user){ %>
+    <li><%= user.username %></li>
+<% }) %>
+>>>>>>> 3f14e55... Add admin dashboard
 <% include ./partials/footer %>
