@@ -59,6 +59,10 @@ app.use('/', login);
 var listing = require('./routes/listing');
 app.use('/', listing);
 
+// LEVELS routes
+var levels = require('./routes/levels');
+app.use('/', levels);
+
 // collection.update(
 //   { _id: id },
 //   { $pull: { 'contact.phone': { number: '+1786543589455' } } }
