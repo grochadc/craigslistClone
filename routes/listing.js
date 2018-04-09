@@ -1,13 +1,14 @@
 var express = require('express'),
     router = express.Router(),
     Ad = require("../models/ad"),
-    User = require("../models/user");
+    User = require("../models/user"),
+    middleware = require('../libs/middleware');
 
-    router.get("/craigslist/new",isLoggedIn,function(req,res){
+    router.get("/craigslist/new", middleware.isLoggedIn, function(req,res){
         res.render("new");
     });
 
-    router.post("/craigslist/new",isLoggedIn,function(req,res){
+    router.post("/craigslist/new",middleware.isLoggedIn,function(req,res){
         Ad.create(req.body.ad,function(err,ad){
             if(err){
                 console.log(err);
@@ -44,7 +45,7 @@ var express = require('express'),
         });
     });
 
-    router.get("/craigslist/:id/edit",checkAdOwnership,function(req,res){
+    router.get("/craigslist/:id/edit",middleware.checkAdOwnerShip, function(req,res){
         Ad.findById(req.params.id,function(err,foundAd){
             if(err){
                 console.log(err);
@@ -55,7 +56,7 @@ var express = require('express'),
         });
     });
 
-    router.put("/craigslist/:id",checkAdOwnership,function(req,res){
+    router.put("/craigslist/:id", middleware.checkAdOwnerShip, function(req,res){
         Ad.findByIdAndUpdate(req.params.id,req.body.ad,function(err,foundAd){
             if (err){
                 console.log(err);
@@ -65,7 +66,7 @@ var express = require('express'),
         });
     });
 
-    router.delete("/craigslist/:id",checkAdOwnership,function(req,res){
+    router.delete("/craigslist/:id", middleware.checkAdOwnerShip, function(req,res){
         Ad.findByIdAndRemove(req.params.id,function(err,foundAd){
             if(err){
                 console.log(err);
@@ -88,32 +89,4 @@ var express = require('express'),
             }
         });
     });
-
-
-    //MIDDLEWARE
-    function isLoggedIn(req, res, next){
-        if(req.isAuthenticated()){
-            return next();
-        }
-        res.redirect("/login");
-    }
-
-    function checkAdOwnership(req, res, next){
-        if(req.isAuthenticated()){
-            Ad.findById(req.params.id,function(err,foundAd){
-                if(err){
-                    res.redirect("back");
-                }else{
-                    if(foundAd.contact == req.user._id){
-                        next();
-                    }else{
-                        res.redirect("back");
-                    }
-                }
-            });
-        }else{
-            res.redirect("back");
-        }
-    }
-
     module.exports = router;
