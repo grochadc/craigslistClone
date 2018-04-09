@@ -17,7 +17,6 @@ module.exports = {
     };
   },
 
-
   checkAdOwnerShip: function (req, res, next){
       if(req.isAuthenticated()){
           Ad.findById(req.params.id,function(err,foundAd){
