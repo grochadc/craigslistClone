@@ -14,6 +14,11 @@
     <td><%= user.username %></td>
     <td><%= user.id %></td>
     <td>
+      <form action="/admin/updatePwd" method="GET">
+        <button class="ui blue basic button" name="ID" value="<%= user.id %>">Reset Password</button>
+      </form>
+    </td>
+    <td>
       <form action="/admin/deleteUser">
         <button class="ui red basic button" name="ID" value="<%= user.id %>">Delete</button>
       </form>
