@@ -15,9 +15,10 @@ var express = require('express'),
         User.findOne({username: req.body.username},function(err,foundUser){
             if(err){
                 console.log(err);
-            }else{
-                res.redirect("/"+foundUser._id+"/dashboard");
+            }else if(foundUser.username == 'admin'){
+                res.redirect("/admin");
             }
+            else res.redirect("/"+foundUser._id+"/dashboard");
         });
     });
 
