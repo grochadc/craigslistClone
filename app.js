@@ -59,10 +59,6 @@ app.use('/', login);
 var listing = require('./routes/listing');
 app.use('/', listing);
 
-// LEVELS routes
-var levels = require('./routes/levels');
-app.use('/', levels);
-
 //ADMIN ROUTES
 var admin = require('./routes/admin');
 app.use('/admin', admin);
