@@ -4,14 +4,17 @@ var express = require('express'),
     User = require("../models/user"),
     middleware = require('../libs/middleware');
 
-    router.get("/", middleware.isLoggedIn,middleware.requireAdmin(),function(req, res){
+    router.use(middleware.isLoggedIn);
+    router.use(middleware.requireAdmin());
+
+    router.get("/", function(req, res){
       User.find({}, function(err, users){
         if(err) console.log(err);
         else res.render("admin-dashboard", {users: users});
       });
     });
 
-    router.get("/deleteUser", middleware.isLoggedIn,middleware.requireAdmin(),function(req, res){
+    router.get("/deleteUser", function(req, res){
       var deleteID = req.query.ID;
       if(!deleteID) res.send('No id passed');
       User.findByIdAndRemove(deleteID, function(err, user){
@@ -20,7 +23,7 @@ var express = require('express'),
       });
     });
 
-    router.post("/updatePwd", middleware.isLoggedIn,middleware.requireAdmin(),function(req, res){
+    router.post("/updatePwd", function(req, res){
       var updateID = req.body.ID;
       var pwd = req.body.password;
       if(!updateID) res.send('No id passed');
@@ -35,7 +38,7 @@ var express = require('express'),
       });
     });
 
-    router.get("/updatePwd", middleware.isLoggedIn,middleware.requireAdmin(),function(req, res){
+    router.get("/updatePwd", function(req, res){
       userID = req.query.ID;
       User.findById(userID, function(err, user){
         if(err) console.log(err);
