@@ -12,8 +12,7 @@ var express = require('express'),
     });
 
     router.get("/deleteUser", middleware.isLoggedIn,middleware.requireAdmin(),function(req, res){
-      deleteID = req.query.ID;
-      console.log('req.query.ID ',deleteID);
+      var deleteID = req.query.ID;
       if(!deleteID) res.send('No id passed');
       User.findByIdAndRemove(deleteID, function(err, user){
         if(err) console.log(err);
@@ -21,6 +20,27 @@ var express = require('express'),
       });
     });
 
+    router.post("/updatePwd", middleware.isLoggedIn,middleware.requireAdmin(),function(req, res){
+      var updateID = req.body.ID;
+      var pwd = req.body.password;
+      if(!updateID) res.send('No id passed');
+      User.findById(updateID, function(err, user){
+        if(err) console.log(err);
+        else{
+          user.setPassword(pwd, function(){
+            user.save();
+            res.send('Password reset succesfully');
+          });
+        }
+      });
+    });
 
+    router.get("/updatePwd", middleware.isLoggedIn,middleware.requireAdmin(),function(req, res){
+      userID = req.query.ID;
+      User.findById(userID, function(err, user){
+        if(err) console.log(err);
+        else res.render("update-pwd", {user: user});
+      });
+    });
 
 module.exports = router;
