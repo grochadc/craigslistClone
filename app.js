@@ -11,6 +11,7 @@ var express = require("express"),
 
 var app = express();
 var ObjectId = require('mongodb').ObjectID;
+
 app.set('view engine','ejs');
 
 app.use(require("express-session")({
@@ -68,6 +69,6 @@ app.use('/admin', admin);
 //   { $pull: { 'contact.phone': { number: '+1786543589455' } } }
 // );
 
-app.listen(process.env.PORT,process.env.IP,function(){
+app.listen(process.env.PORT || 3000, process.env.IP || 'localhost',function(){
     console.log("craigslist server has started");
 });
