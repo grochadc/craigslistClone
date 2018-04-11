@@ -64,6 +64,9 @@ app.use('/', listing);
 var admin = require('./routes/admin');
 app.use('/admin', admin);
 
+var pass = require('./routes/user-pass');
+app.use('/', pass);
+
 // collection.update(
 //   { _id: id },
 //   { $pull: { 'contact.phone': { number: '+1786543589455' } } }
