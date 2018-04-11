@@ -7,4 +7,6 @@
 <% user.ads.forEach(function(ad){ %>
     <li><a href="/craigslist/<%=ad._id%>"><%=ad.title%></a></li>
 <% }) %>
+
+<a href="/<%= user.id %>/changePass">Change your password</a>
 <% include ./partials/footer %>

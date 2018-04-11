@@ -10,7 +10,7 @@ var express = require('express'),
     router.get("/", function(req, res){
       User.find({}, function(err, users){
         if(err) console.log(err);
-        else res.render("admin-dashboard", {users: users});
+        else res.render("admin/admin-dashboard", {users: users});
       });
     });
 
@@ -42,7 +42,7 @@ var express = require('express'),
       userID = req.query.ID;
       User.findById(userID, function(err, user){
         if(err) console.log(err);
-        else res.render("update-pwd", {user: user});
+        else res.render("admin/update-pwd", {user: user});
       });
     });
 

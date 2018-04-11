@@ -1,3 +1,4 @@
+var Ad = require("../models/ad");
 module.exports = {
 
   //MIDDLEWARE
@@ -14,6 +15,13 @@ module.exports = {
         res.status(403).render("403forbidden");
       }
       else next();
+    };
+  },
+
+  checkUserPermission: function(){
+    return function(req, res, next){
+      if(req.user.id == req.params.user_id || req.user.username == 'admin') next();
+      else res.status(403).render("403forbidden");
     };
   },
 
