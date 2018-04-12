@@ -4,7 +4,7 @@
   "description": "My own version of craigslist, made to practice RESTful routing.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node_modules/mocha/bin/mocha ./tests",
     "start": "node app.js"
   },
   "author": "Mitalee Desai",
@@ -19,5 +19,11 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.4.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.0.5",
+    "superagent": "^3.8.2",
+    "supertest": "^3.0.0"
   }
 }
