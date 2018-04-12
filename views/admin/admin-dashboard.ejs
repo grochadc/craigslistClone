@@ -13,6 +13,7 @@
   <tr>
     <td><%= user.username %></td>
     <td><%= user.id %></td>
+    <td><a href="/admin/user/<%= user.id %>">User Dashboard</a></td>
     <td>
       <form action="/admin/updatePwd" method="GET">
         <button class="ui blue basic button" name="ID" value="<%= user.id %>">Reset Password</button>

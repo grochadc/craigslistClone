@@ -46,7 +46,7 @@ app.use('/', homepage);
 
 // DASHBOARD ROUTE
 var dashboard = require('./routes/dashboard');
-app.use('/', dashboard);
+app.use('/dashboard', dashboard);
 
 // REGISTER ROUTES
 var register = require('./routes/register');
