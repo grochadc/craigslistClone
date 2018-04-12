@@ -18,7 +18,7 @@ var express = require('express'),
             }else if(foundUser.username == 'admin'){
                 res.redirect("/admin");
             }
-            else res.redirect("/"+foundUser._id+"/dashboard");
+            else res.redirect("/dashboard");
         });
     });
 

@@ -4,8 +4,8 @@ var express = require('express'),
     User = require("../models/user"),
     middleware = require('../libs/middleware');
 
-    router.get("/:user_id/dashboard",middleware.isLoggedIn,middleware.checkUserPermission(),function(req,res){
-        User.findById(req.params.user_id).populate("ads").exec(function(err,foundUser){
+    router.get("/",middleware.isLoggedIn,function(req,res){
+        User.findById(req.user.id).populate("ads").exec(function(err,foundUser){
             if(err){
                 console.log(err);
             }else{
