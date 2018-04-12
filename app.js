@@ -75,3 +75,5 @@ app.use('/', pass);
 app.listen(process.env.PORT || 3000, process.env.IP || 'localhost',function(){
     console.log("craigslist server has started");
 });
+
+module.exports = app;
