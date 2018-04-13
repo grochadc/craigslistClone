@@ -76,6 +76,6 @@ app.use('/', pass);
 //   { $pull: { 'contact.phone': { number: '+1786543589455' } } }
 // );
 
-app.listen(process.env.PORT || 3000, process.env.IP || 'localhost',function(){
+app.listen(process.env.PORT || 3000, function(){
     console.log("craigslist server has started");
 });
