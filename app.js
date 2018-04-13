@@ -15,9 +15,12 @@ var express = require("express"),
 var app = express();
 var ObjectId = require('mongodb').ObjectID;
 
+
+var dbpass = process.env.DBPASS;
+var dbuser = process.env.DBUSER;
 var store = new MongoDBStore(
   {
-    uri: 'mongodb://localhost:27017/connect_mongodb_session_test',
+    uri: 'mongodb://dbuser:dbpass@ds141786.mlab.com:41786/craigslist',
     databaseName: 'connect_mongodb_session_test',
     collection: 'mySessions'
   });
@@ -47,7 +50,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-  mongoose.connect("mongodb://localhost/craigslist", {useMongoClient: true});
+  mongoose.connect("mongodb://dbuser:dbpass@ds141786.mlab.com:41786/craigslist", {useMongoClient: true});
 // mongoose.connect(process.env.DATABASEURL);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
