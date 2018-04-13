@@ -5,6 +5,7 @@ var express = require("express"),
     localStrategy = require("passport-local"),
     passportLocalMongoose = require("passport-local-mongoose"),
     passport = require("passport"),
+    MongoDBStore = require('connect-mongodb-session')(session),
     Ad = require("./models/ad"),
     User = require("./models/user");
     // seedDB = require("./seeds");
@@ -12,10 +13,26 @@ var express = require("express"),
 var app = express();
 var ObjectId = require('mongodb').ObjectID;
 
+var store = new MongoDBStore(
+  {
+    uri: 'mongodb://localhost:27017/connect_mongodb_session_test',
+    databaseName: 'connect_mongodb_session_test',
+    collection: 'mySessions'
+  });
+  // Catch errors
+    store.on('error', function(error) {
+      assert.ifError(error);
+      assert.ok(false);
+    });
+
 app.set('view engine','ejs');
 
 app.use(require("express-session")({
     secret: "test one two three",
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+    },
+    store: store,
     resave: false,
     saveUninitialized: false
 }));
