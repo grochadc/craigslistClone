@@ -6,6 +6,7 @@ var express = require("express"),
     passportLocalMongoose = require("passport-local-mongoose"),
     passport = require("passport"),
     session = require('express-session'),
+    assert = require('assert'),
     MongoDBStore = require('connect-mongodb-session')(session),
     Ad = require("./models/ad"),
     User = require("./models/user");
