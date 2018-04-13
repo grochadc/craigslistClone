@@ -5,6 +5,7 @@ var express = require("express"),
     localStrategy = require("passport-local"),
     passportLocalMongoose = require("passport-local-mongoose"),
     passport = require("passport"),
+    session = require('express-session'),
     MongoDBStore = require('connect-mongodb-session')(session),
     Ad = require("./models/ad"),
     User = require("./models/user");
