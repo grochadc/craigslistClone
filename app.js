@@ -21,7 +21,7 @@ var dbuser = process.env.DBUSER;
 var store = new MongoDBStore(
   {
     uri: 'mongodb://gonzo:gonzo1@ds141786.mlab.com:41786/craigslist',
-    databaseName: 'connect_mongodb_session_test',
+    databaseName: 'craigslist',
     collection: 'mySessions'
   });
   // Catch errors
